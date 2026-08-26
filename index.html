@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KY-032 | เซ็นเซอร์ตรวจจับสิ่งกีดขวาง</title>
+  <title>KY-032 | การทดสอบผ่าน Serial Monitor</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -223,15 +223,15 @@
     <header>
       <div>
         <p class="course">20105-2022 · พื้นฐานเซนเซอร์ในงานอุตสาหกรรม</p>
-        <h1>โครงงาน<br>เซนเซอร์ KY-032</h1>
+        <h1>การทดสอบ<br>เซ็นเซอร์ KY-032</h1>
       </div>
       <div class="code" aria-label="รหัสโครงงาน KY-032">KY-032</div>
     </header>
-    <img class="hero-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85" alt="แผงวงจรอิเล็กทรอนิกส์สำหรับงานเซ็นเซอร์">
+    <img class="hero-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85" alt="แผงวงจรอิเล็กทรอนิกส์สำหรับการทดสอบเซ็นเซอร์">
     <section aria-label="รายละเอียดโครงงาน">
       <article class="detail full">
-        <span class="label">ชื่อโครงงาน</span>
-        <p class="value">KY-032</p>
+        <span class="label">หัวข้อการทดลอง</span>
+        <p class="value">ออกแบบวิธีการทดสอบ KY-032 Sensor เพื่อแสดงผลที่ Serial Monitor</p>
       </article>
       <article class="detail">
         <span class="label">จัดทำโดย</span>
@@ -243,87 +243,81 @@
       </article>
     </section>
     <article class="content">
-      <p class="intro">ทำความรู้จักกับ KY-032 โมดูลเซ็นเซอร์อินฟราเรดสำหรับตรวจจับสิ่งกีดขวางระยะสั้น เหมาะสำหรับผู้เริ่มต้นใช้งาน Arduino, ESP32 และงานระบบอัตโนมัติ</p>
+      <p class="intro">การทดลองนี้ใช้ตรวจสอบว่าโมดูล KY-032 สามารถตรวจจับสิ่งกีดขวางด้วยคลื่นอินฟราเรด และส่งสถานะดิจิทัลไปแสดงผลบน Serial Monitor ได้ถูกต้องก่อนนำไปใช้กับหุ่นยนต์หรือระบบควบคุมอัตโนมัติ</p>
 
       <section class="topic">
-        <h2>ความรู้เบื้องต้นเกี่ยวกับเซ็นเซอร์</h2>
-        <p>เซ็นเซอร์คืออุปกรณ์ที่รับข้อมูลจากสิ่งแวดล้อม แล้วแปลงเป็นสัญญาณไฟฟ้าที่ไมโครคอนโทรลเลอร์สามารถประมวลผลได้ โดยทั่วไปมี 3 ขั้นตอน ได้แก่ ตรวจจับสภาวะ แปลงข้อมูลเป็นสัญญาณ และส่งต่อให้ระบบควบคุมวิเคราะห์</p>
-        <h3>ประเภทเอาต์พุต</h3>
+        <h2>1. วัตถุประสงค์</h2>
+        <p>ยืนยันว่าการตรวจจับสิ่งกีดขวางระยะสั้นด้วยคลื่นอินฟราเรดสามารถอ่านค่าแบบดิจิทัลได้ถูกต้อง และแสดงผลการตรวจจับผ่าน Serial Monitor อย่างชัดเจน เพื่อประเมินระยะและประสิทธิภาพของเซ็นเซอร์</p>
+        <h3>อุปกรณ์ที่ใช้</h3>
         <ul>
-          <li><strong>Analog Output:</strong> ส่งค่าแบบต่อเนื่องตามค่าที่วัดได้</li>
-          <li><strong>Digital Output:</strong> ส่งสถานะ 0/1 หรือ HIGH/LOW</li>
-          <li><strong>สัญญาณพิเศษ:</strong> เช่น I2C, SPI และ UART สำหรับข้อมูลที่ละเอียดขึ้น</li>
+          <li>Arduino Uno หรือ ESP32 และโมดูล KY-032</li>
+          <li>สาย Jumper แบบ Female to Male</li>
+          <li>คอมพิวเตอร์ที่ติดตั้ง Arduino IDE หรือ PlatformIO</li>
+          <li>Serial Monitor ตั้งความเร็วที่ 9600 Baud Rate</li>
+          <li>กระดาษสีขาวหรือวัตถุผิวเรียบสำหรับทดสอบ</li>
         </ul>
-        <h3>ลักษณะสำคัญ</h3>
-        <p>ความละเอียด ความแม่นยำ ความไว และเวลาในการตอบสนอง ล้วนเป็นคุณสมบัติที่ควรพิจารณาเมื่อนำเซ็นเซอร์ไปใช้งาน</p>
       </section>
 
       <section class="topic">
-        <h2>ข้อมูลเซ็นเซอร์ KY-032</h2>
-        <p>โมดูล KY-032 ใช้หลอดส่งอินฟราเรด (IR LED) และตัวรับอินฟราเรด โดยมี IC LM393 ทำหน้าที่เปรียบเทียบสัญญาณ เมื่อตรวจพบแสงสะท้อนจากวัตถุ เอาต์พุตจะเปลี่ยนเป็น <strong>LOW (0)</strong> และไฟแสดงผลบนโมดูลจะติด</p>
-        <div class="spec-grid">
-          <div class="spec"><strong>แรงดันไฟฟ้า</strong>3.3V ถึง 5V DC</div>
-          <div class="spec"><strong>ระยะตรวจจับ</strong>ประมาณ 2 ถึง 40 เซนติเมตร</div>
-          <div class="spec"><strong>เอาต์พุต</strong>Digital: HIGH / LOW</div>
-          <div class="spec"><strong>กระแสไฟฟ้า</strong>ประมาณ 20 mA</div>
-          <div class="spec"><strong>มุมตรวจจับ</strong>ประมาณ 35 องศา</div>
-          <div class="spec"><strong>ตัวเปรียบเทียบ</strong>LM393</div>
-        </div>
-        <h3>ขาต่อและฟังก์ชัน</h3>
+        <h2>2. หลักการทดสอบ</h2>
+        <ol>
+          <li>ต่อสายไฟเลี้ยงและเชื่อมขา OUT เข้ากับไมโครคอนโทรลเลอร์</li>
+          <li>กำหนดขา GPIO เป็นโหมดรับข้อมูลดิจิทัลด้วย <code>INPUT</code></li>
+          <li>อ่านสถานะด้วยคำสั่ง <code>digitalRead()</code> ในวงรอบการทำงาน</li>
+          <li>ส่งผลสถานะไปแสดงบน Serial Monitor ที่ความเร็ว 9600</li>
+          <li>นำวัตถุมาบังด้านหน้า และปรับระยะด้วยตัวปรับ R5 บนโมดูล</li>
+        </ol>
+        <h3>การต่อวงจร Arduino Uno กับ KY-032</h3>
         <table>
-          <thead><tr><th>ขา</th><th>ชื่อ</th><th>คำอธิบาย</th></tr></thead>
+          <thead><tr><th>ขาบน KY-032</th><th>ขาบน Arduino Uno</th><th>คำอธิบาย</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>GND</td><td>กราวด์ 0V</td></tr>
-            <tr><td>2</td><td>VCC</td><td>จ่ายไฟ 3.3V ถึง 5V</td></tr>
-            <tr><td>3</td><td>OUT</td><td>ปกติ HIGH และเป็น LOW เมื่อตรวจพบวัตถุ</td></tr>
-            <tr><td>4</td><td>EN</td><td>HIGH เพื่อเปิดใช้ หรือ LOW เพื่อปิดใช้งาน</td></tr>
+            <tr><td>GND</td><td>GND</td><td>กราวด์ร่วม</td></tr>
+            <tr><td>+5V / VCC</td><td>5V</td><td>จ่ายไฟเลี้ยง 3.3V ถึง 5V</td></tr>
+            <tr><td>OUT</td><td>D2</td><td>ขาอ่านสัญญาณดิจิทัล</td></tr>
+            <tr><td>EN</td><td>ไม่จำเป็นต้องต่อ</td><td>ควบคุมการเปิด/ปิด IR</td></tr>
           </tbody>
         </table>
       </section>
 
       <section class="topic">
-        <h2>การต่อวงจรกับ Arduino</h2>
-        <table>
-          <thead><tr><th>Arduino</th><th>KY-032</th></tr></thead>
-          <tbody><tr><td>5V</td><td>VCC</td></tr><tr><td>GND</td><td>GND</td></tr><tr><td>D2</td><td>OUT</td></tr><tr><td>ไม่จำเป็นต้องต่อ</td><td>EN</td></tr></tbody>
-        </table>
-        <div class="note">หมายเหตุ: หากไม่ต่อขา EN โมดูลจะเปิดทำงานตลอดเวลาโดยอัตโนมัติผ่าน Pull-up resistor บนบอร์ด</div>
-      </section>
-
-      <section class="topic">
-        <h2>ตัวอย่างโค้ด Arduino</h2>
-        <pre><code>const int obstaclePin = 2;
-const int ledPin = 13;
+        <h2>3. ตัวอย่างโปรแกรมทดสอบ</h2>
+        <p>โปรแกรมจะอ่านค่าจากขา D2 แล้วแสดงค่า Raw Signal พร้อมสถานะการตรวจจับทุก 300 มิลลิวินาที</p>
+        <pre><code>const int sensorPin = 2;
 
 void setup() {
-  pinMode(obstaclePin, INPUT);
-  pinMode(ledPin, OUTPUT);
   Serial.begin(9600);
+  pinMode(sensorPin, INPUT);
+  Serial.println("เริ่มต้นการทดสอบ KY-032");
 }
 
 void loop() {
-  int obstacleState = digitalRead(obstaclePin);
+  int sensorState = digitalRead(sensorPin);
 
-  if (obstacleState == LOW) {
-    digitalWrite(ledPin, HIGH);
-    Serial.println("พบสิ่งกีดขวาง");
+  Serial.print("Raw Signal: ");
+  Serial.print(sensorState);
+  if (sensorState == LOW) {
+    Serial.println(" | พบสิ่งกีดขวาง");
   } else {
-    digitalWrite(ledPin, LOW);
-    Serial.println("เส้นทางว่าง");
+    Serial.println(" | เส้นทางว่าง");
   }
-  delay(100);
+  delay(300);
 }</code></pre>
       </section>
 
       <section class="topic">
-        <h2>ข้อสังเกตและสรุป</h2>
+        <h2>4. การวิเคราะห์ผลลัพธ์</h2>
         <ul>
-          <li>แสงแดดจัดหรือแสงอินฟราเรดจากแหล่งอื่นอาจรบกวนการทำงาน</li>
-          <li>วัตถุสีขาวหรือผิวเรียบสะท้อนอินฟราเรดได้ดีกว่าวัตถุสีดำหรือผิวขรุขระ</li>
-          <li>ควรตั้งความถี่ของ R6 ไว้ใกล้ 38kHz และใช้ R5 ปรับระยะตรวจจับ</li>
-          <li>เหมาะกับการตรวจจับแบบพบ/ไม่พบ ไม่เหมาะกับการวัดระยะเชิงตัวเลขที่แม่นยำ</li>
+          <li><strong>ไม่พบวัตถุ:</strong> ไฟ LED ดับ และแสดง <code>Raw Signal: 1 | เส้นทางว่าง</code></li>
+          <li><strong>พบสิ่งกีดขวาง:</strong> ไฟ LED ติด และแสดงค่า Raw Signal เป็น 0</li>
+          <li><strong>แก้ไขเมื่อพบสัญญาณค้าง:</strong> หมุน R5 ทวนเข็มนาฬิกาเพื่อลดความไว และตรวจสอบ Jumper ที่ขา EN</li>
         </ul>
-        <p><strong>สรุป:</strong> KY-032 ใช้งานง่าย ประหยัด และตอบสนองรวดเร็ว เหมาะกับหุ่นยนต์หลบสิ่งกีดขวาง ระบบนับชิ้นงาน และโครงงานอัตโนมัติเบื้องต้น</p>
+        <h3>ตัวอย่างผลลัพธ์ใน Serial Monitor</h3>
+        <pre><code>เริ่มต้นการทดสอบ KY-032
+Raw Signal: 1 | เส้นทางว่าง
+Raw Signal: 0 | พบสิ่งกีดขวาง
+Raw Signal: 0 | พบสิ่งกีดขวาง
+Raw Signal: 1 | เส้นทางว่าง</code></pre>
+        <div class="note"><strong>สรุป:</strong> การทดสอบผ่าน Serial Monitor ช่วยยืนยันการทำงานของวงจรอินฟราเรดและการรับสัญญาณดิจิทัล สามารถนำผลไปใช้ควบคุมมอเตอร์ สร้างหุ่นยนต์หลบสิ่งกีดขวาง หรือประยุกต์กับระบบนับชิ้นงานได้</div>
       </section>
     </article>
     <footer>จัดทำโดย นายธนภัทร ชูเชิดรัตน์ · แผนกวิชาช่างเทคนิคคอมพิวเตอร์ ระดับ ปวช.</footer>
