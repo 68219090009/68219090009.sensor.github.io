@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KY-032 | พื้นฐานเซนเซอร์ในงานอุตสาหกรรม</title>
+  <title>KY-032 | เซ็นเซอร์ตรวจจับสิ่งกีดขวาง</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -13,6 +13,7 @@
       --accent: #e85d04;
       --accent-dark: #9a3412;
       --paper: #fffdf8;
+      --line: #e8dfd1;
     }
 
     body {
@@ -44,6 +45,14 @@
       color: #fffaf2;
       background: #17324d;
       border-bottom: 8px solid var(--accent);
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 260px;
+      display: block;
+      object-fit: cover;
+      filter: saturate(0.9);
     }
 
     .course {
@@ -105,6 +114,96 @@
       line-height: 1.6;
     }
 
+    .content {
+      display: block;
+      padding: 12px clamp(28px, 7vw, 76px) 56px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0 0 36px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.9;
+    }
+
+    .topic {
+      display: block;
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .topic h2 {
+      margin: 0 0 18px;
+      color: #17324d;
+      font-size: 1.55rem;
+    }
+
+    .topic h3 {
+      margin: 26px 0 10px;
+      color: var(--accent-dark);
+      font-size: 1.1rem;
+    }
+
+    .topic p, .topic li {
+      color: #475569;
+      line-height: 1.85;
+    }
+
+    .topic ol, .topic ul { padding-left: 24px; }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .spec {
+      padding: 16px 18px;
+      background: #fff7eb;
+      border-left: 3px solid #fdbb74;
+    }
+
+    .spec strong { display: block; color: var(--ink); margin-bottom: 4px; }
+
+    table {
+      width: 100%;
+      margin-top: 18px;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td { padding: 13px 15px; border: 1px solid var(--line); }
+    th { color: #fffaf2; background: #17324d; }
+    td { color: #475569; background: #fffdf8; }
+
+    pre {
+      overflow-x: auto;
+      margin: 18px 0 0;
+      padding: 22px;
+      color: #f8fafc;
+      background: #172033;
+      border-left: 5px solid var(--accent);
+      font: 0.9rem/1.7 Consolas, monospace;
+    }
+
+    .note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      color: #7c2d12;
+      background: #ffedd5;
+      border-left: 4px solid var(--accent);
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 22px clamp(28px, 7vw, 76px);
+      color: #fffaf2;
+      background: #17324d;
+      font-size: 0.9rem;
+    }
+
     @media (max-width: 560px) {
       body { padding: 14px; }
       main { box-shadow: 6px 6px 0 #d8cbb8; }
@@ -112,6 +211,10 @@
       .code { width: 92px; height: 92px; font-size: 1.35rem; }
       section { grid-template-columns: 1fr; padding: 28px 24px 36px; }
       .detail.full { grid-column: auto; }
+      .hero-image { height: 190px; }
+      .content { padding: 4px 24px 34px; }
+      .spec-grid { grid-template-columns: 1fr; }
+      th, td { padding: 10px; font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -124,6 +227,7 @@
       </div>
       <div class="code" aria-label="รหัสโครงงาน KY-032">KY-032</div>
     </header>
+    <img class="hero-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85" alt="แผงวงจรอิเล็กทรอนิกส์สำหรับงานเซ็นเซอร์">
     <section aria-label="รายละเอียดโครงงาน">
       <article class="detail full">
         <span class="label">ชื่อโครงงาน</span>
@@ -138,6 +242,91 @@
         <p class="value">ช่างเทคนิคคอมพิวเตอร์<br>ระดับ ปวช.</p>
       </article>
     </section>
+    <article class="content">
+      <p class="intro">ทำความรู้จักกับ KY-032 โมดูลเซ็นเซอร์อินฟราเรดสำหรับตรวจจับสิ่งกีดขวางระยะสั้น เหมาะสำหรับผู้เริ่มต้นใช้งาน Arduino, ESP32 และงานระบบอัตโนมัติ</p>
+
+      <section class="topic">
+        <h2>ความรู้เบื้องต้นเกี่ยวกับเซ็นเซอร์</h2>
+        <p>เซ็นเซอร์คืออุปกรณ์ที่รับข้อมูลจากสิ่งแวดล้อม แล้วแปลงเป็นสัญญาณไฟฟ้าที่ไมโครคอนโทรลเลอร์สามารถประมวลผลได้ โดยทั่วไปมี 3 ขั้นตอน ได้แก่ ตรวจจับสภาวะ แปลงข้อมูลเป็นสัญญาณ และส่งต่อให้ระบบควบคุมวิเคราะห์</p>
+        <h3>ประเภทเอาต์พุต</h3>
+        <ul>
+          <li><strong>Analog Output:</strong> ส่งค่าแบบต่อเนื่องตามค่าที่วัดได้</li>
+          <li><strong>Digital Output:</strong> ส่งสถานะ 0/1 หรือ HIGH/LOW</li>
+          <li><strong>สัญญาณพิเศษ:</strong> เช่น I2C, SPI และ UART สำหรับข้อมูลที่ละเอียดขึ้น</li>
+        </ul>
+        <h3>ลักษณะสำคัญ</h3>
+        <p>ความละเอียด ความแม่นยำ ความไว และเวลาในการตอบสนอง ล้วนเป็นคุณสมบัติที่ควรพิจารณาเมื่อนำเซ็นเซอร์ไปใช้งาน</p>
+      </section>
+
+      <section class="topic">
+        <h2>ข้อมูลเซ็นเซอร์ KY-032</h2>
+        <p>โมดูล KY-032 ใช้หลอดส่งอินฟราเรด (IR LED) และตัวรับอินฟราเรด โดยมี IC LM393 ทำหน้าที่เปรียบเทียบสัญญาณ เมื่อตรวจพบแสงสะท้อนจากวัตถุ เอาต์พุตจะเปลี่ยนเป็น <strong>LOW (0)</strong> และไฟแสดงผลบนโมดูลจะติด</p>
+        <div class="spec-grid">
+          <div class="spec"><strong>แรงดันไฟฟ้า</strong>3.3V ถึง 5V DC</div>
+          <div class="spec"><strong>ระยะตรวจจับ</strong>ประมาณ 2 ถึง 40 เซนติเมตร</div>
+          <div class="spec"><strong>เอาต์พุต</strong>Digital: HIGH / LOW</div>
+          <div class="spec"><strong>กระแสไฟฟ้า</strong>ประมาณ 20 mA</div>
+          <div class="spec"><strong>มุมตรวจจับ</strong>ประมาณ 35 องศา</div>
+          <div class="spec"><strong>ตัวเปรียบเทียบ</strong>LM393</div>
+        </div>
+        <h3>ขาต่อและฟังก์ชัน</h3>
+        <table>
+          <thead><tr><th>ขา</th><th>ชื่อ</th><th>คำอธิบาย</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>GND</td><td>กราวด์ 0V</td></tr>
+            <tr><td>2</td><td>VCC</td><td>จ่ายไฟ 3.3V ถึง 5V</td></tr>
+            <tr><td>3</td><td>OUT</td><td>ปกติ HIGH และเป็น LOW เมื่อตรวจพบวัตถุ</td></tr>
+            <tr><td>4</td><td>EN</td><td>HIGH เพื่อเปิดใช้ หรือ LOW เพื่อปิดใช้งาน</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="topic">
+        <h2>การต่อวงจรกับ Arduino</h2>
+        <table>
+          <thead><tr><th>Arduino</th><th>KY-032</th></tr></thead>
+          <tbody><tr><td>5V</td><td>VCC</td></tr><tr><td>GND</td><td>GND</td></tr><tr><td>D2</td><td>OUT</td></tr><tr><td>ไม่จำเป็นต้องต่อ</td><td>EN</td></tr></tbody>
+        </table>
+        <div class="note">หมายเหตุ: หากไม่ต่อขา EN โมดูลจะเปิดทำงานตลอดเวลาโดยอัตโนมัติผ่าน Pull-up resistor บนบอร์ด</div>
+      </section>
+
+      <section class="topic">
+        <h2>ตัวอย่างโค้ด Arduino</h2>
+        <pre><code>const int obstaclePin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(obstaclePin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int obstacleState = digitalRead(obstaclePin);
+
+  if (obstacleState == LOW) {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("พบสิ่งกีดขวาง");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("เส้นทางว่าง");
+  }
+  delay(100);
+}</code></pre>
+      </section>
+
+      <section class="topic">
+        <h2>ข้อสังเกตและสรุป</h2>
+        <ul>
+          <li>แสงแดดจัดหรือแสงอินฟราเรดจากแหล่งอื่นอาจรบกวนการทำงาน</li>
+          <li>วัตถุสีขาวหรือผิวเรียบสะท้อนอินฟราเรดได้ดีกว่าวัตถุสีดำหรือผิวขรุขระ</li>
+          <li>ควรตั้งความถี่ของ R6 ไว้ใกล้ 38kHz และใช้ R5 ปรับระยะตรวจจับ</li>
+          <li>เหมาะกับการตรวจจับแบบพบ/ไม่พบ ไม่เหมาะกับการวัดระยะเชิงตัวเลขที่แม่นยำ</li>
+        </ul>
+        <p><strong>สรุป:</strong> KY-032 ใช้งานง่าย ประหยัด และตอบสนองรวดเร็ว เหมาะกับหุ่นยนต์หลบสิ่งกีดขวาง ระบบนับชิ้นงาน และโครงงานอัตโนมัติเบื้องต้น</p>
+      </section>
+    </article>
+    <footer>จัดทำโดย นายธนภัทร ชูเชิดรัตน์ · แผนกวิชาช่างเทคนิคคอมพิวเตอร์ ระดับ ปวช.</footer>
   </main>
 </body>
 </html>
