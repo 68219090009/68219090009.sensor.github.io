@@ -3,64 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>เซ็นเซอร์อุตสาหกรรมเบื้องต้น</title>
+  <title>KY-032 | พื้นฐานเซนเซอร์ในงานอุตสาหกรรม</title>
   <style>
     * { box-sizing: border-box; }
+
+    :root {
+      --ink: #172033;
+      --muted: #64748b;
+      --accent: #e85d04;
+      --accent-dark: #9a3412;
+      --paper: #fffdf8;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
+      padding: 28px;
       font-family: "Noto Sans Thai", Tahoma, sans-serif;
-      color: #172033;
-      background: linear-gradient(135deg, #e0f2fe, #f8fafc 55%, #dcfce7);
+      color: var(--ink);
+      background: #f4efe6;
+      background-image: radial-gradient(#d7cdbd 1px, transparent 1px);
+      background-size: 20px 20px;
     }
 
     main {
-      width: min(100%, 760px);
-      padding: 48px;
-      text-align: center;
-      background: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 18px 45px rgba(23, 32, 51, 0.14);
+      width: min(100%, 900px);
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid #e8dfd1;
+      box-shadow: 12px 12px 0 #d8cbb8;
     }
 
-    .badge {
-      display: inline-block;
-      margin-bottom: 16px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      color: #075985;
-      background: #e0f2fe;
-      font-size: 0.9rem;
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: end;
+      padding: 56px clamp(28px, 7vw, 76px) 48px;
+      color: #fffaf2;
+      background: #17324d;
+      border-bottom: 8px solid var(--accent);
+    }
+
+    .course {
+      margin: 0 0 18px;
+      color: #fdbb74;
+      font-size: 0.95rem;
       font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
     h1 {
       margin: 0;
-      color: #0f3d5e;
-      font-size: clamp(2rem, 5vw, 3rem);
+      color: #fffaf2;
+      font-size: clamp(2rem, 5vw, 3.6rem);
       line-height: 1.25;
     }
 
-    p {
-      margin: 20px 0 0;
-      color: #475569;
-      font-size: 1.1rem;
+    .code {
+      display: grid;
+      place-items: center;
+      width: 126px;
+      height: 126px;
+      color: var(--accent-dark);
+      background: #ffd7a8;
+      border: 2px solid #fff2df;
+      border-radius: 50%;
+      font-family: Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      transform: rotate(5deg);
+    }
+
+    section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      padding: 38px clamp(28px, 7vw, 76px) 48px;
+    }
+
+    .detail {
+      padding: 22px 24px;
+      border-left: 4px solid var(--accent);
+      background: #fff7eb;
+    }
+
+    .detail.full { grid-column: 1 / -1; }
+
+    .label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .value {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.6;
     }
 
     @media (max-width: 560px) {
-      main { padding: 36px 24px; }
+      body { padding: 14px; }
+      main { box-shadow: 6px 6px 0 #d8cbb8; }
+      header { grid-template-columns: 1fr; padding: 38px 24px 32px; }
+      .code { width: 92px; height: 92px; font-size: 1.35rem; }
+      section { grid-template-columns: 1fr; padding: 28px 24px 36px; }
+      .detail.full { grid-column: auto; }
     }
   </style>
 </head>
 <body>
   <main>
-    <span class="badge">รายวิชา</span>
-    <h1>วิชาเซ็นเซอร์อุตสาหกรรมเบื้องต้น</h1>
-    <p>68219090009 นายธนภัทร ชูเชิดรัตน์</p>
+    <header>
+      <div>
+        <p class="course">20105-2022 · พื้นฐานเซนเซอร์ในงานอุตสาหกรรม</p>
+        <h1>โครงงาน<br>เซนเซอร์ KY-032</h1>
+      </div>
+      <div class="code" aria-label="รหัสโครงงาน KY-032">KY-032</div>
+    </header>
+    <section aria-label="รายละเอียดโครงงาน">
+      <article class="detail full">
+        <span class="label">ชื่อโครงงาน</span>
+        <p class="value">KY-032</p>
+      </article>
+      <article class="detail">
+        <span class="label">จัดทำโดย</span>
+        <p class="value">นายธนภัทร ชูเชิดรัตน์</p>
+      </article>
+      <article class="detail">
+        <span class="label">แผนกวิชาและระดับการศึกษา</span>
+        <p class="value">ช่างเทคนิคคอมพิวเตอร์<br>ระดับ ปวช.</p>
+      </article>
+    </section>
   </main>
 </body>
 </html>
